@@ -1,0 +1,13 @@
+amqp==2.2.2
+billiard==3.5.0.3
+celery==4.1.0
+Django==2.0.2
+django-appconf==1.0.2
+django-celery-email==2.0.0
+django-crispy-forms==1.7.0
+kombu==4.1.0
+python-memcached==1.59
+pytz==2018.3
+selenium==3.9.0
+six==1.11.0
+vine==1.1.4

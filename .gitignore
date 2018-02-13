@@ -1,2 +1,4 @@
 geckodriver.log
 .vscode
+virtualenv
+news/__pycache__

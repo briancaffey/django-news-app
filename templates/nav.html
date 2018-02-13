@@ -1,0 +1,20 @@
+<nav class="navbar navbar-custom navbar-expand-sm bg-light">
+
+            <a class="navbar-brand" href="{% url 'posts:home' %}">Django News</a>
+              <!-- Links -->
+              <ul class="nav navbar-nav navbar-right">
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'posts:all' %}">Staff Portal</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" id="new-article" href="{% url 'posts:new' %}">New Article</a>
+                </li>
+                {% endif %}
+                <li class="nav-item pull-right">
+                    <a class="nav-link pull-right" href="{% url 'posts:mail' %}">Email Admin</a>
+                  </li>
+              </ul>
+
+            
+            </nav>

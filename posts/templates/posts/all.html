@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Staff | {{ block.super}}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+{% include 'nav.html' %}
+{% for post in posts %}
+
+<div class="card">
+    <div class="card-block">
+        <h4 class="card-title">{{ post.title | safe }}</h4>
+        <h6 class="card-subtitle mb-2 text-muted"><small>by {{ post.user.username }} on {{ post.timestamp | date}}</small></h6>
+        <hr >
+        <p class="card-text">{{ post.content | safe | linebreaks }}</p>
+        <a href="{% url 'posts:toggle_publish' id=post.id %}" class="card-link">Manage Post</a>
+    </div>
+</div>
+
+{% endfor %}
+</div>
+{% endblock %}

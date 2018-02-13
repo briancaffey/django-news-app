@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Home | {{ block.super}}{% endblock %}
+{% block content %}
+
+<div class="container">
+
+    {% include 'nav.html' %}
+    <div display="none" data="{{ latest }}" id="last"></div>
+    {% for post in posts %}
+    <div class="card">
+        <div class="container">
+        <div class="card-block">
+            <h4 class="card-title">{{ post.title | safe }}</h4>
+            <h6 class="card-subtitle mb-2 text-muted"><small>by {{ post.user.username }} on {{ post.timestamp | date}}</small></h6>
+            <hr>
+            <p class="card-text">{{ post.content | safe | linebreaks }}</p>
+        </div>
+    </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+<script>
+    console.log("working")
+    poll = function() {
+        $.ajax({
+        url: '/refresh',
+        dataType: 'json',
+        type: 'get',
+        success: function(data) {
+            var latest = parseInt(data.latest)
+            var latest_local = parseInt($("#last").attr('data'))
+            console.log("latest", latest);
+            console.log("latest_local", latest_local);
+
+            if (latest > latest_local + 2){
+                location.reload()
+            }
+            
+        },
+        error: function() {
+            console.log('The refresh poll was not successful');
+        }
+        });
+    },
+    pollInterval = setInterval(function() {
+        poll();
+        }, 5000);
+
+</script>
+{% endblock %}

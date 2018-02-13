@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Staff | {{ block.super}}{% endblock %}
+{% block content %}
+
+<div class="container">
+    {% include 'nav.html' %}
+    <h6>Write your Django News article here:</h6>
+    <form action="{% url 'posts:new' %}" method="POST">
+        {% csrf_token %}
+        {{ form.title }}
+        {{ form.content }}
+        {{ form.timestamp.label }}
+        <div class="row" >
+            <div class="container">
+                {{ form.timestamp }}
+            </div>
+        </div>
+        <input type="submit" id="id_submit" class="btn btn-success" value="Finish" />
+    </form>
+</div>
+
+{% endblock %}

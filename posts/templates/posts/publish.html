@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Staff | {{ block.super}}{% endblock %}
+{% block content %}
+
+<div class="container">
+    {% include 'nav.html' %}
+    <div class="row">
+        
+        <div class="container">
+        <form action="{% url 'posts:toggle_publish' id=post.id %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" id="toggle-publish" class="btn btn-success pull-right" value="{% if post.published %}Unpublish{% else %}Publish{% endif %}" />
+        </form>
+    </div>
+    </div>
+    <p>publish settings</p>
+
+    <br />
+    <div class="card">
+        <div class="container">
+            <div class="card-block">
+                <h4 class="card-title">{{ post.title}}</h4>
+                <h6 class="card-subtitle mb-2 text-muted"><small>by {{ post.user.username }} on {{ post.timestamp | date}}</small></h6>
+                <hr>
+                <p class="card-text">{{ post.content }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
